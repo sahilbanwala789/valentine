@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>For My Bacha ❤️</title>
+    <style>
+        :root {
+            --primary: #ff4b6e;
+            --bg: #ffe5ec;
+            --white: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: var(--white);
+            width: 90%;
+            max-width: 450px;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(255, 75, 110, 0.15);
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        h1 { color: var(--primary); font-size: 2rem; }
+
+        /* Step 2: The Letter Styling */
+        .letter-box {
+            background: #fffafa;
+            border: 1px solid #ffcad4;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: left;
+            line-height: 1.8;
+            color: #444;
+            font-size: 1.1rem;
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(255, 75, 110, 0.05);
+        }
+
+        .letter-box::before {
+            content: "💌";
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            font-size: 2rem;
+        }
+
+        /* Step 3: Polaroid Gallery */
+        .polaroid-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 8px 8px 20px 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            transition: 0.3s;
+        }
+
+        .polaroid:nth-child(even) { transform: rotate(3deg); }
+        .polaroid img { width: 100%; border-radius: 5px; }
+
+        /* Buttons */
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 75, 110, 0.3);
+            transition: 0.3s;
+        }
+
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 75, 110, 0.4); }
+        
+        #noBtn { background: #8e9aaf; position: relative; z-index: 1000; }
+
+        /* Heart Animation */
+        .heart {
+            position: fixed;
+            top: -10vh;
+            font-size: 2rem;
+            user-select: none;
+            z-index: 0;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        function move() {
+            var btn = document.getElementById('noBtn');
+            var msg = document.getElementById('msg');
+            var phrases = ["Huppp! 😤", "Only Yes! 😘", "Dant khani hai? 👊", "Mummy ko bolunga! 🥺"];
+            if (msg) msg.innerText = phrases[Math.floor(Math.random() * phrases.length)];
+            
+            btn.style.position = 'fixed';
+            var x = Math.random() * (window.innerWidth - 100);
+            var y = Math.random() * (window.innerHeight - 50);
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function next(num) {
+            document.getElementById('s1').style.display = 'none';
+            document.getElementById('s2').style.display = 'none';
+            document.getElementById('s3').style.display = 'none';
+            document.getElementById('s' + num).style.display = 'block';
+
+            if (num === 2) {
+                document.getElementById('noBtn').style.display = 'none';
+                setInterval(createHeart, 300); // Start raining hearts!
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="card">
+        <div id="s1">
+            <h1 style="margin-top:0">Be My Valentine? ❤️</h1>
+            <p id="msg" style="color: #ff4b6e; font-weight: bold; min-height: 25px;">Ready to say Yes? 😘</p>
+            <div style="display: flex; justify-content: center; gap: 20px; min-height: 100px; align-items: center;">
+                <button class="btn" onclick="next(2)">Yes</button>
+                <button id="noBtn" class="btn" onmouseover="move()" ontouchstart="move()">No</button>
+            </div>
+        </div>
+
+        <div id="s2" style="display: none;">
+            <h1 style="margin-top:0">Yayyy! 🥰</h1>
+            <div class="letter-box">
+                <strong style="color: var(--primary)">Cutu Bacha,</strong><br>
+                my bacha kidooooo happy Valentine baby girl. Thank you for be with me my wife...
+                jaldi jaldi aa jao mere pass bhut sara pyar krna hai mujhe fir apko...
+                and bhut cutu cutu kisses bhi deni hai.. aap din par din or pyare lgte ja rhe ho mujhe rok lo 
+                mujhe ni shadi phele hi bhaga kar le jauga motu mere.. 
+                <br><br>
+                <span style="float: right;">— Always Yours ❤️</span>
+                <div style="clear: both;"></div>
+            </div>
+            <button class="btn" style="margin-top: 25px; width: 100%;" onclick="next(3)">Our Memories 📸</button>
+        </div>
+
+        <div id="s3" style="display: none;">
+            <h1 style="margin-top:0">Our Story 🥰</h1>
+            <div class="polaroid-grid">
+                <div class="polaroid"><img src="/Users/pankajmalik/Downloads/pinky1.png"></div>
+                <div class="polaroid"><img src="/Users/pankajmalik/Downloads/pinky2.jpg"></div>
+                <div class="polaroid"><img src="/Users/pankajmalik/Downloads/pinky3.jpg"></div>
+                <div class="polaroid"><img src="/Users/pankajmalik/Downloads/pinky4.jpg"></div>
+            </div>
+            <button class="btn" style="width: 100%;" onclick="location.reload()">Start Over</button>
+        </div>
+    </div>
+
+</body>
+</html>
